@@ -26,6 +26,7 @@ export class RoomsComponent {
       photos: 'https://picsum.photos/200/300',
       checkinTime: new Date('2020-01-01'),
       checkoutTime: new Date('2020-01-02'),
+      rating: 4.5,
     },
     {
       roomNumber: 2,
@@ -35,6 +36,7 @@ export class RoomsComponent {
       photos: 'https://picsum.photos/200/300',
       checkinTime: new Date('2020-01-01'),
       checkoutTime: new Date('2020-01-02'),
+      rating: 5,
     },
     {
       roomNumber: 3,
@@ -44,6 +46,7 @@ export class RoomsComponent {
       photos: 'https://picsum.photos/200/300',
       checkinTime: new Date('2020-01-01'),
       checkoutTime: new Date('2020-01-02'),
+      rating: 2.3,
     }
   ];
 

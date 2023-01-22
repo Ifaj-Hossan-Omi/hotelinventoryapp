@@ -23,7 +23,7 @@
   {{ roomList | json }}
 
   <!-- ngFor -->
-  <table>
+  <table class="table">
     <tr>
       <th>Index</th>
       <th>Even/Odd</th>
@@ -32,10 +32,11 @@
       <th>Room Price</th>
       <th>Room Amenities</th>
       <th>Checkin TIme</th>
+      <th>Rating</th>
     </tr>
     <tr
       [ngClass]="e ? 'even' : 'odd'"
-      *ngFor="let room of roomList | slice: 0:2; let e = even; let i = index"
+      *ngFor="let room of roomList | slice: 0:3; let e = even; let i = index"
     >
       <td>{{ i }}</td>
       <td>{{ e ? "Even" : "Odd" }}</td>
@@ -44,6 +45,7 @@
       <td>{{ room.price | currency : 'EUR'}}</td>
       <td>{{ room.amenitis | titlecase}}</td>
       <td>{{ room.checkinTime | date : 'dd/MMM/yyyy'}}</td>
+      <td>{{room.rating | number : '1.0-1' : 'en-us'}}</td>
     </tr>
   </table>
 </div>

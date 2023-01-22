@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { Room, RoomList } from './rooms';
+import { OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-rooms',
   templateUrl: './rooms.component.html',
   styleUrls: ['./rooms.component.scss'],
 })
-export class RoomsComponent {
+export class RoomsComponent implements OnInit {
   hoetelName = 'Hotel California';
   numberOfRooms = 10;
   hideRooms = false;
@@ -17,38 +18,45 @@ export class RoomsComponent {
     bookedRooms: 5,
   };
 
-  roomList: RoomList[] = [
-    {
-      roomNumber: 1,
-      roomType: 'Deluxe',
-      amenitis: 'Air Conditioning, TV, WiFi',
-      price: 100,
-      photos: 'https://picsum.photos/200/300',
-      checkinTime: new Date('2020-01-01'),
-      checkoutTime: new Date('2020-01-02'),
-      rating: 4.5,
-    },
-    {
-      roomNumber: 2,
-      roomType: 'Super Deluxe',
-      amenitis: 'Air Conditioning, TV, WiFi',
-      price: 200,
-      photos: 'https://picsum.photos/200/300',
-      checkinTime: new Date('2020-01-01'),
-      checkoutTime: new Date('2020-01-02'),
-      rating: 5,
-    },
-    {
-      roomNumber: 3,
-      roomType: 'Luxury',
-      amenitis: 'Air Conditioning, TV, WiFi',
-      price: 300,
-      photos: 'https://picsum.photos/200/300',
-      checkinTime: new Date('2020-01-01'),
-      checkoutTime: new Date('2020-01-02'),
-      rating: 2.3,
-    }
-  ];
+  roomList: RoomList[] = [];
+
+  constructor() {}
+
+  ngOnInit(): void {
+    this.roomList = [
+        {
+          roomNumber: 1,
+          roomType: 'Deluxe',
+          amenitis: 'Air Conditioning, TV, WiFi',
+          price: 100,
+          photos: 'https://picsum.photos/200/300',
+          checkinTime: new Date('2020-01-01'),
+          checkoutTime: new Date('2020-01-02'),
+          rating: 4.5,
+        },
+        {
+          roomNumber: 2,
+          roomType: 'Super Deluxe',
+          amenitis: 'Air Conditioning, TV, WiFi',
+          price: 200,
+          photos: 'https://picsum.photos/200/300',
+          checkinTime: new Date('2020-01-01'),
+          checkoutTime: new Date('2020-01-02'),
+          rating: 5,
+        },
+        {
+          roomNumber: 3,
+          roomType: 'Luxury',
+          amenitis: 'Air Conditioning, TV, WiFi',
+          price: 300,
+          photos: 'https://picsum.photos/200/300',
+          checkinTime: new Date('2020-01-01'),
+          checkoutTime: new Date('2020-01-02'),
+          rating: 2.3,
+        },
+    ];
+  }
+
 
   toggle() {
     this.hideRooms = !this.hideRooms;

@@ -20,7 +20,7 @@ export class RoomsComponent implements OnInit {
 
   roomList: RoomList[] = [];
   selectedRoom!: RoomList;
-
+  title = 'Rooms List';
   constructor() {}
 
   ngOnInit(): void {
@@ -60,6 +60,7 @@ export class RoomsComponent implements OnInit {
 
   toggle() {
     this.hideRooms = !this.hideRooms;
+    this.title = 'New Rooms List';
     // this.numberOfRooms = this.numberOfRooms === 10 ? 20 : 10;
   }
 

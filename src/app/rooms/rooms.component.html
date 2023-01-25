@@ -1,6 +1,8 @@
 <!-- <h1>Welcome to {{ hoetelName }}</h1> -->
 
 <app-header></app-header>
+<app-header></app-header>
+<app-header></app-header>
 
 <div [hidden]="hideRooms">
   Number of Rooms:
@@ -35,3 +37,12 @@
     (selectedRoom)="selectRoom($event)"
   ></app-rooms-list>
 </div>
+
+<!-- Destroyer -->
+<!-- <div *ngIf="hideRooms">
+  <app-rooms-list
+    [rooms]="roomList"
+    [title]="title"
+    (selectedRoom)="selectRoom($event)"
+  ></app-rooms-list>
+</div> -->

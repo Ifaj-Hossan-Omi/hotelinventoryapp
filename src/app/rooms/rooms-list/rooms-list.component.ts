@@ -4,6 +4,7 @@ import {
   EventEmitter,
   Input,
   OnChanges,
+  OnDestroy,
   Output,
   SimpleChanges,
 } from '@angular/core';
@@ -15,7 +16,7 @@ import { RoomList } from '../rooms';
   styleUrls: ['./rooms-list.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class RoomsListComponent implements OnChanges {
+export class RoomsListComponent implements OnChanges, OnDestroy {
   @Input() rooms: RoomList[] = [];
   @Input() title: string = '';
 
@@ -32,5 +33,9 @@ export class RoomsListComponent implements OnChanges {
 
   selectRoom(room: RoomList) {
     this.selectedRoom.emit(room);
+  }
+
+  ngOnDestroy(): void {
+    console.log('RoomsListComponent destroyed');
   }
 }

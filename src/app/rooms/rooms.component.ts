@@ -4,6 +4,8 @@ import {
   DoCheck,
   ViewChild,
   AfterViewChecked,
+  ViewChildren,
+  QueryList,
 } from '@angular/core';
 import { Room, RoomList } from './rooms';
 import { OnInit } from '@angular/core';
@@ -32,6 +34,8 @@ export class RoomsComponent
   title = 'Rooms List';
   // @ViewChild(HeaderComponent, {static: true}) headerComponent!: HeaderComponent;
   @ViewChild(HeaderComponent) headerComponent!: HeaderComponent;
+  // @ViewChildren(HeaderComponent) headerComponents!: Array<HeaderComponent>;
+  @ViewChildren(HeaderComponent) headerComponents!: QueryList<HeaderComponent>;
 
   constructor() {}
 
@@ -77,6 +81,11 @@ export class RoomsComponent
 
   ngAfterViewInit() {
     this.headerComponent.title = 'Hotel Relax';
+    // this.headerComponents.forEach((headerComponent) => {
+    //   headerComponent.title = 'Hotel rrr';
+    // });
+    this.headerComponents.last.title = 'last';
+    // this.headerComponents.get(1).title = 'first'; // Not working
   }
   ngAfterViewChecked() {
     this.headerComponent.title = 'Hotel R';

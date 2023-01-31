@@ -1,5 +1,6 @@
-import { Component, AfterViewInit, ViewChild, ViewContainerRef, ElementRef } from '@angular/core';
+import { Component, AfterViewInit, ViewChild, ViewContainerRef, ElementRef, Optional } from '@angular/core';
 import { RoomsComponent } from './rooms/rooms.component';
+import { LoggerService } from './logger.service';
 
 @Component({
   selector: 'app-root',
@@ -7,6 +8,8 @@ import { RoomsComponent } from './rooms/rooms.component';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent implements AfterViewInit{
+
+  constructor(@Optional() private loggerService : LoggerService,){}
 
   @ViewChild('user', {read: ViewContainerRef}) vcr!: ViewContainerRef;
   @ViewChild('name', {static: true}) name!: ElementRef;

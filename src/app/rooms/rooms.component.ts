@@ -6,10 +6,12 @@ import {
   AfterViewChecked,
   ViewChildren,
   QueryList,
+  SkipSelf,
 } from '@angular/core';
 import { Room, RoomList } from './rooms';
 import { OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
+import { RoomsService } from './services/rooms.service';
 
 @Component({
   selector: 'app-rooms',
@@ -37,42 +39,47 @@ export class RoomsComponent
   // @ViewChildren(HeaderComponent) headerComponents!: Array<HeaderComponent>;
   @ViewChildren(HeaderComponent) headerComponents!: QueryList<HeaderComponent>;
 
-  constructor() {}
+  // roomService = new RoomsService();
+
+  constructor(private roomsService: RoomsService) {}
 
   ngOnInit(): void {
     console.log(this.headerComponent);
-    this.roomList = [
-      {
-        roomNumber: 1,
-        roomType: 'Deluxe',
-        amenitis: 'Air Conditioning, TV, WiFi',
-        price: 100,
-        photos: 'https://picsum.photos/200/300',
-        checkinTime: new Date('2020-01-01'),
-        checkoutTime: new Date('2020-01-02'),
-        rating: 4.5,
-      },
-      {
-        roomNumber: 2,
-        roomType: 'Super Deluxe',
-        amenitis: 'Air Conditioning, TV, WiFi',
-        price: 200,
-        photos: 'https://picsum.photos/200/300',
-        checkinTime: new Date('2020-01-01'),
-        checkoutTime: new Date('2020-01-02'),
-        rating: 5,
-      },
-      {
-        roomNumber: 3,
-        roomType: 'Luxury',
-        amenitis: 'Air Conditioning, TV, WiFi',
-        price: 300,
-        photos: 'https://picsum.photos/200/300',
-        checkinTime: new Date('2020-01-01'),
-        checkoutTime: new Date('2020-01-02'),
-        rating: 2.3,
-      },
-    ];
+    this.roomsService.getRooms().subscribe((rooms) => {
+      this.roomList = rooms;
+    });
+    // this.roomList = [
+    //   {
+    //     roomNumber: 1,
+    //     roomType: 'Deluxe',
+    //     amenitis: 'Air Conditioning, TV, WiFi',
+    //     price: 100,
+    //     photos: 'https://picsum.photos/200/300',
+    //     checkinTime: new Date('2020-01-01'),
+    //     checkoutTime: new Date('2020-01-02'),
+    //     rating: 4.5,
+    //   },
+    //   {
+    //     roomNumber: 2,
+    //     roomType: 'Super Deluxe',
+    //     amenitis: 'Air Conditioning, TV, WiFi',
+    //     price: 200,
+    //     photos: 'https://picsum.photos/200/300',
+    //     checkinTime: new Date('2020-01-01'),
+    //     checkoutTime: new Date('2020-01-02'),
+    //     rating: 5,
+    //   },
+    //   {
+    //     roomNumber: 3,
+    //     roomType: 'Luxury',
+    //     amenitis: 'Air Conditioning, TV, WiFi',
+    //     price: 300,
+    //     photos: 'https://picsum.photos/200/300',
+    //     checkinTime: new Date('2020-01-01'),
+    //     checkoutTime: new Date('2020-01-02'),
+    //     rating: 2.3,
+    //   },
+    // ];
   }
 
   ngDoCheck(): void {
@@ -90,7 +97,6 @@ export class RoomsComponent
   ngAfterViewChecked() {
     this.headerComponent.title = 'Hotel R';
   }
-  
 
   toggle() {
     this.hideRooms = !this.hideRooms;
@@ -104,7 +110,7 @@ export class RoomsComponent
 
   addRoom() {
     const room: RoomList = {
-      roomNumber: 4,
+      roomNumber: '4',
       roomType: 'Luxury',
       amenitis: 'Air Conditioning, TV, WiFi',
       price: 300,
@@ -115,6 +121,27 @@ export class RoomsComponent
     };
 
     // this.roomList.push(room);
-    this.roomList = [...this.roomList, room];
+    // this.roomList = [...this.roomList, room];
+
+    this.roomsService.addRooms(room).subscribe((data) => {
+      this.roomList = data;
+    });
+  }
+
+  editRoom(){
+    const room: RoomList = {
+      roomNumber: '3',
+      roomType: 'Luxury',
+      amenitis: 'Air Conditioning, TV, WiFi',
+      price: 300,
+      photos: 'https://picsum.photos/200/300',
+      checkinTime: new Date('2020-01-01'),
+      checkoutTime: new Date('2020-01-02'),
+      rating: 1.3,
+    };
+
+    this.roomsService.editRooms(room).subscribe((data) => {
+      this.roomList = data;
+    });
   }
 }

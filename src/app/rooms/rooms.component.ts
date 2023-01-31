@@ -12,6 +12,7 @@ import { Room, RoomList } from './rooms';
 import { OnInit } from '@angular/core';
 import { HeaderComponent } from '../header/header.component';
 import { RoomsService } from './services/rooms.service';
+import { HttpRequest } from '@angular/common/http';
 
 @Component({
   selector: 'app-rooms',
@@ -143,5 +144,15 @@ export class RoomsComponent
     this.roomsService.editRooms(room).subscribe((data) => {
       this.roomList = data;
     });
+  }
+
+  deleteRoom(){
+    this.roomsService.delete('3').subscribe((data) => {
+      this.roomList = data;
+    });
+  }
+
+  getPhotos(){
+    const request = new HttpRequest('GET', 'https://jsonplaceholder.typicode.com/photos');
   }
 }
